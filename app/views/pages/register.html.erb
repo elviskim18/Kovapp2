@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title text-center">New User Information</h5>
+    <h6 class="card-subtitle mb-2 text-muted text-center">Create new certificate</h6>
+    <form action="<%= new_user_registration_path %>" method="POST">
+      
+      <div class="mb-3">
+          <label for="first_name" class="form-label">First Name</label>
+          <input required type="text" class="form-control" id="first_name" name='first_name'>
+      </div>
+      <div class="mb-3">
+          <label for="last_name" class="form-label">Last Name</label>
+          <input required type="text" class="form-control" id="last_name" name="last_name">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input required type="email" class="form-control" id="email" name="email">
+      </div>
+      <div class="mb-3">
+        <label for="phone_number" class="form-label">Phone Number</label>
+        <input required type="number" class="form-control" id="phone_number" name="phone_number">
+      </div>
+      <div class="mb-3">
+        <label for="national_id" class="form-label">National ID</label>
+        <input required type="number" class="form-control" id="national_id" name="national_id">
+      </div>
+      <div class="mb-3">
+        <label for="date_of_birth" class="form-label">Date Of Birth</label>
+        <input required type="date" id="date_of_birth" name="date_of_birth" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label for="gender" class="form-label">Gender</label>
+        <select class="form-select" aria-label="Default select example" name="gender">
+          <option selected disabled required>Select an option</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Non-Binary">Non-Binary</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Submit</button>
+    </form>
+  </div>
+</div>

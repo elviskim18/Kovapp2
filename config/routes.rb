@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :posts
   root to: 'pages#home'
   get 'pages/home'
+  get 'new', to: 'pages#register', as: :new_user_form
+  post 'new', to: 'pages#register_user', as: :new_user_registration
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
   resources :certificates
 
