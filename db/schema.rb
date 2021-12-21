@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2021_12_03_213500) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.string "author_type"
-    t.integer "author_id"
+    t.bigint "author_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
@@ -41,8 +44,8 @@ ActiveRecord::Schema.define(version: 2021_12_03_213500) do
   create_table "certificates", force: :cascade do |t|
     t.string "name"
     t.text "qr_code"
-    t.integer "user_id", null: false
-    t.integer "uploaded_by_id"
+    t.bigint "user_id", null: false
+    t.bigint "uploaded_by_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["uploaded_by_id"], name: "index_certificates_on_uploaded_by_id"
@@ -63,7 +66,7 @@ ActiveRecord::Schema.define(version: 2021_12_03_213500) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "username"
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "first_name"
