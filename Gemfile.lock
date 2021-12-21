@@ -163,6 +163,7 @@ GEM
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pdfkit (0.8.5)
     pg (1.2.3)
     pry (0.14.1)
       coderay (~> 1.1)
@@ -289,6 +290,7 @@ DEPENDENCIES
   dotenv-rails
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  pdfkit
   pg
   pry
   puma (~> 5.0)
