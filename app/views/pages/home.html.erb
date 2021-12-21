@@ -3,10 +3,14 @@
 
     <h1 class="display-5 fw-bold">Welcome to Kovapp</h1>
     <div class="col-lg-6 mx-auto">
-      <p class="lead mb-4">Kovapp is a secure certificate signing and verification platform.</p>
+      <p class="lead mb-4">Kovapp is a secure digital certificate signage and verification platform.</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Verify QR Code</button>
-        <button type="button" class="btn btn-secondary btn-lg px-4">Log In</button>
+        <%= link_to "Verify QR Code", new_user_session_path, class:"btn btn-primary text-white btn-lg px-4 gap-3" %>
+        <% if current_user %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"btn btn-secondary text-white btn-lg px-4" %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, class:"btn btn-secondary text-white btn-lg px-4" %>
+        <% end %>
       </div>
     </div>
   </div>
