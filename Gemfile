@@ -57,3 +57,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'simple_form'
 gem 'activeadmin'
+gem "africastalking-ruby"
+
+gem 'dotenv-rails', groups: [:development, :test]
