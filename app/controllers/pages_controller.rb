@@ -11,7 +11,7 @@ class PagesController < ApplicationController
     user = User.create!(permitted_register_params)
 
     rand = SecureRandom.alphanumeric(500)
-    secret_key = Rails.application.secrets.secret_key_base
+    secret_key = Rails.application.secret_key_base
     crypt = ActiveSupport::MessageEncryptor.new(secret_key[0..31], secret_key)
     qr_code_value = crypt.encrypt_and_sign(rand)
 
