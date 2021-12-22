@@ -62,3 +62,4 @@ gem "africastalking-ruby"
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'pry', groups: [:development]
 gem 'pdfkit'
+gem 'rqrcode'

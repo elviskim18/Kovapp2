@@ -7,6 +7,7 @@ class User < ApplicationRecord
   # validates :username, presence: true, uniqueness: { case_sensitive: false }
   # validate :validate_username
   attr_writer :login
+  has_many :certificates
 
   def login
       @login || username || email

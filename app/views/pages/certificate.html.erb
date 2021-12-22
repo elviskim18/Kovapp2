@@ -1,0 +1,37 @@
+<div class="container">
+  <h1 class="card-title text-center">Covid-19 Vaccination Certificate</h1>
+  <h3 class="card-title text-center">Republic Of Kenya</h3>
+  <div class="row">
+    <div class="col text-center">
+      <%= image_tag "gok.png", width: '200lvh', height: '200lvh', alt: ""%>
+    </div>
+  </div>
+  <h3 class="card-title text-center text-danger">Ministry Of Health</h3>
+  <br>
+    <strong>
+      This is to certify that <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %>, born on <%= @user.date_of_birth.to_s(:short_date) %>, from Kenya with National ID: <%= @user.national_id %> has been
+      vaccinated against the Coronavirus (COVID-19) on the date indicated in accordance with the National Health Regulations.
+    </strong>
+  </p>
+  <br>
+  <div class="text-center">
+    <strong>
+      To verify this Certificate please scan the QR code below.
+    <div class="w-25 h-25 text-center" style="align-items: center;">
+      <%= image_tag("/qr_codes/#{@cert.id}.png") %>
+      <%# <%= raw(@svg)
+      %>
+    </div>
+    </strong>
+    <p>
+      <strong>
+        This certificate is issued by the Ministry of Health on <%= @user.created_at.to_s(:short_date) %>.
+      </strong>
+    </p>
+    <div class="row pb-5">
+      <div class="col">
+        <%= image_tag "kovapp.png", width: '200lvh', height: '150lvh', alt: ""%>
+      </div>
+    </div>
+  <div>
+</div>

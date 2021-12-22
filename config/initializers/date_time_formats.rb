@@ -1,0 +1,6 @@
+Time::DATE_FORMATS[:long_date] = '%d/%m/%Y %H:%M'
+Time::DATE_FORMATS[:dash_date] = '%d-%m-%Y'
+Date::DATE_FORMATS[:dash_date] = '%d-%m-%Y'
+Time::DATE_FORMATS[:short_date] = '%d/%m/%Y'
+Date::DATE_FORMATS[:short_date] = '%d/%m/%Y'
+Time::DATE_FORMATS[:long_date_time] = '%d/%m/%y at %H:%M:%S'
