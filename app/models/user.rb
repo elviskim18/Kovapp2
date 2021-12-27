@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_secure_password
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable
 
@@ -12,10 +13,6 @@ class User < ApplicationRecord
   def login
       @login || username || email
   end
-
-  # def validate_username
-  #     errors.add(:username, :invalid) if User.where(email: username).exists?
-  # end
 
   def self.find_for_database_authentication(warden_conditions)
       conditions = warden_conditions.dup

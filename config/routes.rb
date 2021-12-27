@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   post 'new', to: 'pages#register_user', as: :new_user_registration
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
 
-  post 'auth/login', to: 'auth#login'
-  delete 'auth/logout', to: 'auth#logout'
+  # api auth routes
+  post 'authenticate', to: 'authentication#authenticate'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

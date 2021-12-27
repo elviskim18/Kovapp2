@@ -57,13 +57,29 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'simple_form'
 gem 'activeadmin'
+
+# for sending sms messages using africastalking api
 gem "africastalking-ruby"
 
+# for loading env variables in development
 gem 'dotenv-rails', groups: [:development, :test]
+
+# for debugging in development
 gem 'pry', groups: [:development]
+
+# for generating pdf files
 gem 'pdfkit'
+
+# for generating qr codes
 gem 'rqrcode'
 
+# for storing assets in amazon s3
 gem "aws-sdk-s3", require: false
 
+# for insatlling the wkhtmltopdf binary on heroky
 gem 'wkhtmltopdf-heroku', '2.12.6.0'
+
+# for encoding and decoding jwt tokens for phone app authentication
+gem 'jwt'
+gem 'simple_command'
+gem 'bcrypt', '~> 3.1.7'
