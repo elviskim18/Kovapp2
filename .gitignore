@@ -34,6 +34,7 @@
 
 /public/packs
 /public/packs-test
+/public/qr_codes
 /node_modules
 /yarn-error.log
 yarn-debug.log*
