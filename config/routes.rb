@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get 'certificate/:id', to: 'pages#certificate', as: :certificate
   get 'certificates/:id', to: 'pages#show'
   get 'certificates' => 'pages#index'
+
+  get 'user', to: 'api#user'
+  post 'certificates/verify', to: 'api#verify'
   post 'new', to: 'pages#register_user', as: :new_user_registration
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
 
