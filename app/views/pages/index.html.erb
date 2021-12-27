@@ -1,0 +1,27 @@
+<div class="container">
+  <h3>List of Covid Certificates</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">ID Number</th>
+        <th scope="col">Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @certificates.each do |certificate| %>
+        <tr>
+          <th scope="row"> <%= link_to certificate.id, "/certificates/#{certificate.id}" %> </th>
+          <td><%= certificate.user.first_name.capitalize %></td>
+          <td><%= certificate.user.last_name.capitalize %></td>
+          <td><%= certificate.user.email %></td>
+          <td><%= certificate.user.national_id %></td>
+          <td><%= certificate.user.phone_number %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

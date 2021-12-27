@@ -7,6 +7,16 @@ class PagesController < ApplicationController
   def register
   end
 
+   def index
+    @certificates = Certificate.includes(:user).all
+   end
+
+   def show
+    @cert = Certificate.includes(:user).find(params[:id])
+    @user = @cert.user
+    render 'certificate'
+   end
+
   def register_user
     user = User.create!(permitted_register_params)
 
@@ -18,7 +28,7 @@ class PagesController < ApplicationController
     cert = user.certificates.create!(qr_code: qr_code_value)
     cert_link = certificate_url(cert.id)
     send_sms(user, cert_link)
-    redirect_to new_user_form_path
+    redirect_to "/certificates/#{cert.id}"
   end
 
   def send_sms(user, cert_link)
@@ -31,14 +41,6 @@ class PagesController < ApplicationController
     @user = @cert.user
 
     qrcode = RQRCode::QRCode.new(@cert.qr_code)
-    # @svg = qrcode.as_svg(
-    #   color: "000",
-    #   shape_rendering: "crispEdges",
-    #   module_size: 11,
-    #   standalone: true,
-    #   use_path: true,
-    #   viewbox: "0 0 24 30"
-    # )
     png = qrcode.as_png(
       bit_depth: 1,
       border_modules: 4,
