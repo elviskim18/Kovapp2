@@ -51,11 +51,14 @@ class PagesController < ApplicationController
       resize_gte_to: false,
       size: 300
     )
+    file_name = "#{Rails.root.join('tmp').to_s}/qr_code_#{@cert.id}.png"
+    png.save(file_name)
+    @cert.file.attach(io: File.open(file_name), filename: "qr_code_#{@cert.id}.png")
     
-    path = "public/qr_codes/#{@cert.id}.png"
-    write_path = "#{Rails.root}/#{path}"
-    @asset_path = "#{request.base_url}/#{path}"
-    IO.binwrite(write_path, png.to_s)
+    # path = "public/qr_codes/#{@cert.id}.png"
+    # write_path = "#{Rails.root}/#{path}"
+    # @asset_path = "#{request.base_url}/#{path}"
+    # IO.binwrite(write_path, png.to_s)
 
     html = render_to_string 'certificate', formats: %i[html]
     filename = "certificate.pdf"

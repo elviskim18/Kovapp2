@@ -63,3 +63,5 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'pry', groups: [:development]
 gem 'pdfkit'
 gem 'rqrcode'
+
+gem "aws-sdk-s3", require: false

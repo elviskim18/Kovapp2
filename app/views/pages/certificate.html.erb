@@ -18,9 +18,7 @@
     <strong>
       To verify this Certificate please scan the QR code below.
     <div class="w-25 h-25 text-center" style="align-items: center;">
-      <%= image_tag("/qr_codes/#{@cert.id}.png") %>
-      <%# <%= raw(@svg)
-      %>
+      <%= image_tag(@cert.file) %>
     </div>
     </strong>
     <p>
