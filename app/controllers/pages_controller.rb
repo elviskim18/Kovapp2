@@ -28,7 +28,7 @@ class PagesController < ApplicationController
     cert = user.certificates.create!(qr_code: qr_code_value)
     cert_link = certificate_url(cert.id)
     send_sms(user, cert_link)
-    redirect_to "/certificates/#{cert.id}"
+    redirect_to "/certificates"
   end
 
   def send_sms(user, cert_link)
