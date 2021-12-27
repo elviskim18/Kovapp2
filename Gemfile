@@ -65,3 +65,5 @@ gem 'pdfkit'
 gem 'rqrcode'
 
 gem "aws-sdk-s3", require: false
+
+gem 'wkhtmltopdf-heroku', '2.12.6.0'
