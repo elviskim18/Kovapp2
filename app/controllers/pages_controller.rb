@@ -8,7 +8,7 @@ class PagesController < ApplicationController
   end
 
    def index
-    @certificates = Certificate.includes(:user).all
+    @certificates = Certificate.includes(:user).order(:created_at)
    end
 
    def show
