@@ -20,7 +20,7 @@ class PagesController < ApplicationController
   def register_user
     user = User.create!(permitted_register_params)
 
-    rand = SecureRandom.alphanumeric(500)
+    rand = SecureRandom.alphanumeric(100)
     secret_key = Rails.application.secret_key_base
     crypt = ActiveSupport::MessageEncryptor.new(secret_key[0..31], secret_key)
     qr_code_value = crypt.encrypt_and_sign(rand)
