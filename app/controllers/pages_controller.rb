@@ -14,6 +14,9 @@ class PagesController < ApplicationController
    def show
     @cert = Certificate.includes(:user).find(params[:id])
     @user = @cert.user
+
+    generate_cert(@cert) unless @cert.file&.attached?
+
     render 'certificate'
    end
 
@@ -27,6 +30,7 @@ class PagesController < ApplicationController
 
     cert = user.certificates.create!(qr_code: qr_code_value)
     cert_link = certificate_url(cert.id)
+    generate_cert(cert)
     send_sms(user, cert_link)
     redirect_to "/certificates"
   end
@@ -39,29 +43,7 @@ class PagesController < ApplicationController
   def certificate
     @cert = Certificate.find(params[:id])
     @user = @cert.user
-
-    qrcode = RQRCode::QRCode.new(@cert.qr_code)
-    png = qrcode.as_png(
-      bit_depth: 1,
-      border_modules: 4,
-      color_mode: ChunkyPNG::COLOR_GRAYSCALE,
-      color: "black",
-      file: nil,
-      fill: "white",
-      module_px_size: 6,
-      resize_exactly_to: false,
-      resize_gte_to: false,
-      size: 300
-    )
-    file_name = "#{Rails.root.join('tmp').to_s}/qr_code_#{@cert.id}.png"
-    png.save(file_name)
-    @cert.file.attach(io: File.open(file_name), filename: "qr_code_#{@cert.id}.png")
-    
-    # path = "public/qr_codes/#{@cert.id}.png"
-    # write_path = "#{Rails.root}/#{path}"
-    # @asset_path = "#{request.base_url}/#{path}"
-    # IO.binwrite(write_path, png.to_s)
-
+    generate_cert(@cert) unless @cert.file&.attached?
     html = render_to_string 'certificate', formats: %i[html]
     filename = "certificate.pdf"
     render_pdf(html, filename, orientation: 'Portrait')
@@ -75,5 +57,24 @@ class PagesController < ApplicationController
     default_options = { 'margin-bottom': '1in', 'footer-spacing': 1, 'root_url': "#{request.base_url}/" }
     kit = PDFKit.new(html, default_options.merge(options))
     send_data kit.to_pdf, type: 'application/pdf', filename: filename
+  end
+
+  def generate_cert(cert)
+    qrcode = RQRCode::QRCode.new(cert.qr_code)
+    png = qrcode.as_png(
+      bit_depth: 1,
+      border_modules: 4,
+      color_mode: ChunkyPNG::COLOR_GRAYSCALE,
+      color: "black",
+      file: nil,
+      fill: "white",
+      module_px_size: 6,
+      resize_exactly_to: false,
+      resize_gte_to: false,
+      size: 300
+    )
+    file_name = "#{Rails.root.join('tmp').to_s}/qr_code_#{cert.id}.png"
+    png.save(file_name)
+    cert.file.attach(io: File.open(file_name), filename: "qr_code_#{cert.id}.png")
   end
 end

@@ -17,10 +17,10 @@
   <div class="text-center">
     <strong>
       To verify this Certificate please scan the QR code below.
+    </strong>
     <div class="w-25 h-25 text-center" style="align-items: center;">
       <%= image_tag(@cert.file) %>
     </div>
-    </strong>
     <p>
       <strong>
         This certificate is issued by the Ministry of Health on <%= @user.created_at.to_s(:short_date) %>.
