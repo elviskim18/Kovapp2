@@ -36,7 +36,7 @@ class PagesController < ApplicationController
   end
 
   def send_sms(user, cert_link)
-    message = "Dear #{user.first_name}, your certificate is ready. Please click on the link below to download it. #{cert_link}."
+    message = "Dear #{user.first_name}, your certificate is ready. Please click on the link below to download it. #{cert_link}"
     At.send(user.phone_number, message)
   end
 
