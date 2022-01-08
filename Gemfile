@@ -77,7 +77,7 @@ gem 'rqrcode'
 gem "aws-sdk-s3", require: false
 
 # for insatlling the wkhtmltopdf binary on heroky
-gem 'wkhtmltopdf-heroku', '2.12.6.0'
+gem 'wkhtmltopdf-heroku', '2.12.6.0', groups: [:production]
 
 # for encoding and decoding jwt tokens for phone app authentication
 gem 'jwt'
