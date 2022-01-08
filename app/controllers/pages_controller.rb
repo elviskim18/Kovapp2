@@ -21,16 +21,23 @@ class PagesController < ApplicationController
    end
 
   def register_user
+    # create a new user using the provided information
     user = User.create!(permitted_register_params)
 
+    # generate A random alphanumeric string unique to this user
     rand = SecureRandom.alphanumeric(100)
+  
+    # sign the generated string using a secret key
     secret_key = Rails.application.secret_key_base
     crypt = ActiveSupport::MessageEncryptor.new(secret_key[0..31], secret_key)
     qr_code_value = crypt.encrypt_and_sign(rand)
 
+    # generate a certificate using the signed value and link it to the user information
     cert = user.certificates.create!(qr_code: qr_code_value)
     cert_link = certificate_url(cert.id)
     generate_cert(cert)
+
+    # send an sms to the user with a link to the generated certificate
     send_sms(user, cert_link)
     redirect_to "/certificates"
   end
