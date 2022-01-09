@@ -12,13 +12,17 @@ RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
   yarn \
   wkhtmltopdf
 
-COPY Gemfile* /usr/src/app/
-# COPY package.json /usr/src/app/
+RUN mkdir /app
+WORKDIR /app
 
-WORKDIR /usr/src/app
-RUN bundle install
+COPY Gemfile Gemfile.lock ./
+COPY yarn.lock ./
+
+RUN gem install bundler -v 2.2.27
+
+RUN bundle install --without production
 RUN yarn install
-COPY yarn.lock /usr/src/app/
-COPY . /usr/src/app/
 
-CMD ["bin/rails", "s", "-b", "0.0.0.0"]
+COPY . .
+
+EXPOSE 3000

@@ -2,16 +2,23 @@ version: '3.8'
 services:
   db:
     image: postgres
+    restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
+      POSTGRES_DB: kovapp_development
     volumes:
       - postgres:/var/lib/postgresql/data
   web:
     build: .
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
     ports:
       - "3000:3000"
     depends_on:
       - db
+    command: bundle exec bin/rails server -b  0.0.0.0
 volumes:
   postgres:
+  bundle_cache:
