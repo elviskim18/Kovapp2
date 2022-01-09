@@ -12,8 +12,7 @@
   </head>
 
   <body>
-    
-  <%= render 'layouts/navbar' %>
+  <%= render 'layouts/navbar' unless request.path.split('/')[1] == 'certificate' %>
   <div class="container-fluid container-lg">
     <%= yield %>
   </div>
